@@ -1,0 +1,21 @@
+{
+	"files.associations": {
+		"iostream": "cpp",
+		"ostream": "cpp",
+		"cstdlib": "cpp",
+		"array": "cpp",
+		"deque": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp",
+		"unordered_map": "cpp",
+		"unordered_set": "cpp",
+		"vector": "cpp",
+		"initializer_list": "cpp",
+		"valarray": "cpp",
+		"chrono": "cpp",
+		"limits": "cpp",
+		"xiosbase": "cpp",
+		"xlocale": "cpp"
+	},
+	"C_Cpp.intelliSenseEngineFallback": "Enabled"
+}
