@@ -13,7 +13,6 @@ void process()
 	For(i, 1, n)
 		pos[i] = min(abs(arr1[i] + arr2[lower_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]),
 					abs(arr1[i] + arr2[upper_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]));
-
 	ans = pos[1];
 	For(i, 2, n)
 	ans = min(ans, pos[i]);
