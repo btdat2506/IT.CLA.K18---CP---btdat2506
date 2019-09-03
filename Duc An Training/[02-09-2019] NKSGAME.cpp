@@ -7,15 +7,28 @@ using namespace std;
 
 ll n, ans = 0, arr1[100010], arr2[100010], pos[100010];
 
+ll bSearch(ll x)
+{
+	ll l = 1, r = n;
+	while (r >= l)
+	{
+		ll mid = (l + r) / 2;
+		if (arr2[mid] == -x) return mid;
+		if (arr2[mid] > -x) r = mid-1; else l = mid+1;
+	}
+	if (l>n) return r;
+	if (r<1) return l;
+	if (abs(x + arr2[l]) < abs(x + arr2[r])) return l; else return r;
+}
+
 void process()
 {
 	sort(arr2+1, arr2+n+1);
 	For(i, 1, n)
 	{	
-		cout << (lower_bound(arr2+1, arr2+n, -arr1[i]) - arr2) << ' ' << upper_bound(arr2+1, arr2+n, -arr1[i]) - arr2 << endl;
-		pos[i] = min(abs(arr1[i] + arr2[lower_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]),
-					abs(arr1[i] + arr2[upper_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]));
-
+		pos[i] = abs(arr1[i] + arr2[bSearch(arr1[i])]);
+	//	pos[i] = min(abs(arr1[i] + arr2[lower_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]),
+	//				abs(arr1[i] + arr2[upper_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2]));
 	}
 	ans = pos[1];
 	For(i, 2, n)
