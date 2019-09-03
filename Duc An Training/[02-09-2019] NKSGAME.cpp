@@ -5,7 +5,7 @@ using namespace std;
 #define ll int64_t
 #define For(i, a, b) for(ll i = a; i <= b; i++)
 
-ll n, ans = 0, arr1[100010], arr2[100010], pos[100010];
+ll n, ans = INT64_MAX, arr1[100010], arr2[100010];
 
 ll bSearch(ll x)
 {
@@ -26,13 +26,10 @@ void process()
 	sort(arr2+1, arr2+n+1);
 	For(i, 1, n)
 	{	
-	//	pos[i] = abs(arr1[i] + arr2[bSearch(arr1[i])]);
-		pos[i] = min(abs(arr1[i] + arr2[lower_bound(arr2+1, arr2+n+1, -arr1[i]) - (arr2+1)]),
-					abs(arr1[i] + arr2[upper_bound(arr2+1, arr2+n+1, -arr1[i]) - (arr2+1)]));
+		ll x, y = lower_bound(arr2+1, arr2+n+1, -arr1[i]) - arr2;
+		if (y > 1) x = y - 1; else x = y;
+		ans = min(ans, min(abs(arr1[i] + arr2[x]), abs(arr1[i] + arr2[y])));
 	}
-	ans = pos[1];
-	For(i, 2, n)
-	ans = min(ans, pos[i]);
 	cout << ans << endl;
 }
 
