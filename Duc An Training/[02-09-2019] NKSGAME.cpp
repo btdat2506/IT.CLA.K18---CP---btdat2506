@@ -7,42 +7,40 @@ using namespace std;
 
 ll n, l1 = -1, l2 = -1, ans = 0, arr1[100010], arr2[100010], pros[100010];
 
-ll bSearch_non_negative(ll x)
+ll bSearch_positive(ll x)
 {
 	ll l = l2, r = n;
-	while (r > l)
+	while (l-r != 1)
 	{
 		ll mid = (l + r) / 2;
-		if (abs(arr2[mid]) >= x) r = mid; else l = mid;
+		if (abs(arr2[mid]) >= x) {
+			r = mid-1; 
+		} else l = mid+1;
 	}
-	return r;
+	return l;
 }
 
 ll bSearch_negative(ll x)
 {
 	ll l = 1, r = l2;
-	while (r > l)
+	while (l-r!=1)
 	{
 		ll mid = (l + r) / 2;
-		if (abs(arr2[mid]) >= x) l = mid; else r = mid;
+		if (abs(arr2[mid]) >= x) l = mid+1; else r = mid-1;
 	}
-	return r;
+	return l;
 }
 
 void process()
 {
-	sort(arr1+1, arr1+n+1);
 	sort(arr2+1, arr2+n+1);
 	For(i, 1, n)
-	{
-		if (l1 == -1 && arr1[i] >= 0) l1 = i;
-		if (l2 == -1 && arr2[i] >= 0) l2 = i;
-	}
+	if (l1 == -1 && arr1[i] >= 0) l1 = i;
 	if (l1 == -1) l1 = n;
 	if (l2 == -1) l2 = n;
 	For(i, 1, n)
 	if (arr1[i] < 0)
-		pros[i] = bSearch_non_negative(arr1[i]);
+		pros[i] = bSearch_positive(arr1[i]);
 	else
 		pros[i] = bSearch_negative(arr1[i]);
 	ans = abs(arr1[1] + arr2[pros[1]]);
