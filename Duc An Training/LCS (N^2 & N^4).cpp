@@ -25,8 +25,6 @@ void process_sqr()
 	For(i, 1, m)
 	For(j, 1, n)
 	if (arr1[i] != arr2[j]) lcs[i][j] = 0; else
-	//Fod(i, m, 1)
-	//Fod(j, n, 1)
 	For(i1, 0, i-1)
 	For(j1, 0, j-1) 
 	if (arr1[i1] == arr2[j1])
