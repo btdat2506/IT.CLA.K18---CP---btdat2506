@@ -5,7 +5,7 @@ using namespace std;
 #define ll int64_t
 #define For(i, a, b) for(ll i = a; i <= b; i++)
 
-ll process(ll str, ll smart, ll exp)
+void process(ll str, ll smart, ll exp)
 {
 	str -= smart;
 	smart = 0;
@@ -13,7 +13,16 @@ ll process(ll str, ll smart, ll exp)
 	ll str_origin = str, smart_origin = smart, exp_origin = exp;
 	while (str != smart + 1)
 	{
+		exp--;
+		ll cnt = exp_origin - exp;
+		if (cnt + smart < str)
+		{
+			
+		}
+		else
+		{
 
+		}
 	}
 }
 
@@ -44,7 +53,7 @@ int main()
 			}
 			else
 			if (str > smart)
-			cout << process(str, smart, exp) << endl;
+			process(str, smart, exp);
 		}
 	}
 }
