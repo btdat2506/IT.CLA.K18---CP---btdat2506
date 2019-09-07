@@ -57,3 +57,5 @@ int main()
 		}
 	}
 }
+
+//ans = (e+s) - max(e, (e+s+i)/2)
