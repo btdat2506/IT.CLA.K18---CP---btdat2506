@@ -6,14 +6,14 @@ using namespace std;
 #define For(i, a, b) for(ll i = a; i <= b; i++)
 
 stack <ll> st;
-ll n, next[100010], low[100010], num[100010], ans[100010];
+ll n, cnt1, nxt[100010], low[100010], num[100010], ans[100010];
 
 void visit(ll u)
 {
 	st.push(u);
-	low[u] = num[u] = ++cnt;
+	low[u] = num[u] = ++cnt1;
 	{
-		ll v = next[u];
+		ll v = nxt[u];
 		if (num[v])
 			low[u] = min(low[u], num[v]);
 		else
@@ -22,15 +22,17 @@ void visit(ll u)
 			low[u] = min(low[u], low[v]);
 		}
 	}
-	if (low[u] == num[u] && (st.top() != u) || next[u] != u)
+	if (low[u] == num[u] && ((st.top() != u) || nxt[u] != u))
 	{
 		ll cnt = 1;
 		while (!st.empty())
 		{
+			cout << st.top() << ' ';
 			ans[st.top()] = cnt;
 			cnt++;
 			st.pop();
 		}
+		cout << endl;
 	}
 }
 
@@ -38,8 +40,10 @@ void process()
 {
 	For(i, 1, n)
 	{
-		if (next[i] == i) ans[i] = 1; else
-		if (!num[i]) visit(i);
+		memset(low, 0, sizeof(low));
+		memset(num, 0, sizeof(num));
+		if (nxt[i] == i) ans[i] = 1; else
+		visit(i);
 	}
 	For(i, 1, n)
 	cout << ans[i] << "\n";
@@ -49,7 +53,7 @@ void input()
 {
 	cin >> n;
 	For(i, 1, n)
-	cin >> next[i];
+	cin >> nxt[i];
 }
 
 int main()
