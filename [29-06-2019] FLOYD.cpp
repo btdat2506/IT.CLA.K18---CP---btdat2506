@@ -64,8 +64,8 @@ void dj(ll start, ll endd, bool query)
 
 int main()
 {
-//	freopen("input.txt", "r", stdin);
-//	freopen("output.txt", "w", stdout);
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
 	cin >> n >> m >> k;
 	For(i, 1, m)
 	{
