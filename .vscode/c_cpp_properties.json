@@ -1,17 +1,20 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0",
+                "/usr/local/Cellar/gcc/9.2.0_1/include/c++/9.2.0/x86_64-apple-darwin18"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
             ],
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
-            "intelliSenseMode": "msvc-x64"
+            "cppStandard": "c++20",
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4
