@@ -37,7 +37,7 @@ void input()
 int main()
 {
     freopen("PRODUCT.INP", "r", stdin);
-    //freopen("PRODUCT.OUT", "w", stdout);
+    freopen("PRODUCT.OUT", "w", stdout);
     ll t;
     cin >> t;
     while (t--)
