@@ -5,13 +5,13 @@
 using namespace std;
 
 typedef int64_t ll;
-#define For(i, a, b) for(ll i = a; i < b; i++)
+#define For(i, a, b) for(ll i = a; i <= b; i++)
 
 ll n, k, res, a[100010], M[100010][20];
 
 ll calc(ll i, ll j)
 {
-    ll k = log2(j - i + 1) + 1;
+    ll k = log2(j - i + 1);
     return __gcd(M[i][k], M[j - (1 << k) + 1][k]);
 }
 
@@ -40,12 +40,9 @@ void input()
 
 int main()
 {
+    ios::sync_with_stdio(0); cin.tie(0);
     freopen("GCD.INP", "r", stdin);
     freopen("GCD.OUT", "w", stdout);
     input();
     process();
 }
-
-//cd "/Volumes/Data/IT.CLA.K18 - btdat2506/BDHSGQG - Da Lat 2019/Day 12 - Mr. Tung/"
-// && g++ GCD.cpp -o GCD && 
-//"/Volumes/Data/IT.CLA.K18 - btdat2506/BDHSGQG - Da Lat 2019/Day 12 - Mr. Tung/"GCD
