@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int n, a[1010], dem[1010], t = 0;
+
 #define For(i, a, b) for(int i = a; i <= b; i++)
 #define Ford(i, a, b) for(int i = a; i >= b; i--)
 
+int n, a[1010], dem[1010], t = 0;
 
 void process()
 {
