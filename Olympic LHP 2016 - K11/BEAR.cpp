@@ -15,19 +15,19 @@ struct dt
 	}
 };
 
-ll n, m, ans, t[10010], parent[10010];
+ll n, m, ans, t[10010], parent[10010], ranking[10010];
 dt db[100010];
+map <ii, bool> passed;
 
 ll find_v(ll u)
 {
-	while (parent[u] != u)
-		u = parent[u];
-	return u;
+	if (u == parent[u]) return u;
+	return parent[u] = find_v(parent[u]);
 }
 
 void process()
 {
-	sort(db+1, db+1+n);
+	sort(db+1, db+1+m);
 	For(i, 1, n) parent[i] = i;
 	For(i, 1, m)
 	{
@@ -35,10 +35,16 @@ void process()
 		if (u != v) 
 		{
 			ans += db[i].c;
-			parent[u] = v; //union vertices
+			if (ranking[u] > ranking[v])
+				parent[v] = u;
+			else
+			{
+				parent[u] = v;
+				if (ranking[u] == ranking[v]) ranking[v]++;
+			}
 		}
 	}
-	cout << ans << "\n";
+	cout << ans+t[1] << "\n";
 }
 
 void input()
@@ -47,9 +53,8 @@ void input()
 	For(i, 1, n) cin >> t[i];
 	For(i, 1, m)
 	{
-		ll a, b, c;
 		cin >> db[i].u >> db[i].v >> db[i].c;
-		db[i].c += t[db[i].u] + t[db[i].v] + db[i].c;
+		db[i].c = 2*db[i].c + t[db[i].u] + t[db[i].v];
 	}
 }
 

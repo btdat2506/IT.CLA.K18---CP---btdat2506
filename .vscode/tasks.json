@@ -2,41 +2,16 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "g++ build active file",
+            "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "/usr/bin"
-            },
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "type": "shell",
-            "label": "g++-9 build and run active file",
-            "command": "",
-            "args": [
-                "cd",
-                "${fileDirname}",
-                "&&",
-                "/usr/local/bin/g++-9",
-                "-std=c++1y",
-                "-g",
-                "${fileBasename}",
-                "-o",
-                "${fileBasenameNoExtension}",
-                "&&",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "/usr/local/bin"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
@@ -48,8 +23,8 @@
         },
         {
             "type": "shell",
-            "label": "g++-7 build active file",
-            "command": "/usr/bin/g++-7",
+            "label": "C/C++: g++-9 build active file",
+            "command": "/usr/bin/g++-9",
             "args": [
                 "-g",
                 "${file}",
@@ -57,12 +32,15 @@
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "/usr/bin"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ],
     "version": "2.0.0"
