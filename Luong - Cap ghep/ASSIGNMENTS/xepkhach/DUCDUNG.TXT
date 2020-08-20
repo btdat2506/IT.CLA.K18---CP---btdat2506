@@ -1,0 +1,41 @@
+============= KET QUA KIEM TRA FILE ducdung ================ 
+*** Input: 0 
+Thoi gian chay chuong trinh: 0.16 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 1 
+Thoi gian chay chuong trinh: 0.22 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 2 
+Thoi gian chay chuong trinh: 0.16 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 3 
+Thoi gian chay chuong trinh: 0.77 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 4 
+Thoi gian chay chuong trinh: 0.71 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 5 
+Thoi gian chay chuong trinh: 0.16 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 6 
+Thoi gian chay chuong trinh: 0.22 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 7 
+Thoi gian chay chuong trinh: 1.04 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 8 
+Thoi gian chay chuong trinh: 0.66 (sec)
+*** Ket qua test 
+Ok!
+*** Input: 9 
+Thoi gian chay chuong trinh: 7.09 (sec)
+*** Ket qua test 
+Ok!

@@ -1,0 +1,56 @@
+============= KET QUA KIEM TRA FILE net ================ 
+*** Input: L1 
+Thoi gian chay chuong trinh: 0.05 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L2 
+Thoi gian chay chuong trinh: 0.05 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L3 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L4 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L5 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L6 
+Thoi gian chay chuong trinh: 0.16 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L7 
+Thoi gian chay chuong trinh: 0.38 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L8 
+Thoi gian chay chuong trinh: 0.27 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: L9 
+Thoi gian chay chuong trinh: 0.60 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: LA 
+Thoi gian chay chuong trinh: 0.77 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK
+*** Input: LB 
+Thoi gian chay chuong trinh: 0.22 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK

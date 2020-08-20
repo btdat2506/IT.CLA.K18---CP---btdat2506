@@ -1,0 +1,65 @@
+============= KET QUA KIEM TRA FILE khanh ================ 
+*** Input: X0 
+Thoi gian chay chuong trinh: 2.69 (sec)
+*** Ket qua test 
+Khong xep duoc! Ok
+*** Input: X1 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 279, Ok
+*** Input: X2 
+Thoi gian chay chuong trinh: 1.21 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 553, Ok
+*** Input: X3 
+Thoi gian chay chuong trinh: 2.53 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 721, Ok
+*** Input: X4 
+Thoi gian chay chuong trinh: 0.00 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 143, Ok
+*** Input: X5 
+Thoi gian chay chuong trinh: 0.22 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 360, Ok
+*** Input: X6 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 259, Ok
+*** Input: X7 
+Thoi gian chay chuong trinh: 0.49 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 447, Ok
+*** Input: X8 
+Thoi gian chay chuong trinh: 1.15 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 546, Ok
+*** Input: X9 
+Thoi gian chay chuong trinh: 2.09 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 688, Ok
+*** Input: XA 
+Thoi gian chay chuong trinh: 23.35 (sec)
+*** Ket qua test 
+Khong xep duoc! Ok
+*** Input: XB 
+Thoi gian chay chuong trinh: 5.60 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 921, Ok
+*** Input: XC 
+Thoi gian chay chuong trinh: 8.74 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1066, Ok
+*** Input: XD 
+Thoi gian chay chuong trinh: 14.07 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1326, Ok
+*** Input: XE 
+Thoi gian chay chuong trinh: 20.22 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1386, Ok
+*** Input: XF 
+Thoi gian chay chuong trinh: 24.12 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1539, Ok

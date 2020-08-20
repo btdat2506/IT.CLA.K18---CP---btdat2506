@@ -1,0 +1,25 @@
+============= KET QUA KIEM TRA FILE ducdung ================ 
+*** Input: YA 
+Thoi gian chay chuong trinh: 0.16 (sec)
+*** Ket qua test 
+Khong xep duoc! Ok
+*** Input: YB 
+Thoi gian chay chuong trinh: 0.05 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 921, Ok
+*** Input: YC 
+Thoi gian chay chuong trinh: 0.05 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1066, Ok
+*** Input: YD 
+Thoi gian chay chuong trinh: 0.05 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1326, Ok
+*** Input: YE 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1386, Ok
+*** Input: YF 
+Thoi gian chay chuong trinh: 0.11 (sec)
+*** Ket qua test 
+Hop le! So lan nhan phim = 1539, Ok

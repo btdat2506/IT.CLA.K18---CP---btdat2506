@@ -8,6 +8,10 @@ using namespace std;
 ll n;
 pair <ll, ll> pr[100];
 
+voidBFS)
+{
+
+}
 bool cmp (const pair <ll, ll> &L, const pair <ll, ll> &R)
 {
     if (L.first == R.first)

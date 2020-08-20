@@ -1,0 +1,10 @@
+*** Input:  
+Thoi gian chay chuong trinh: 0.00 (sec)
+*** Ket qua test 
+Runtime error 002 at 0000:0057.
+Xem lai form output cua chuong trinh! 
+*** Input:  
+Thoi gian chay chuong trinh: 0.00 (sec)
+*** Ket qua test 
+Nhan xet:
+  OK

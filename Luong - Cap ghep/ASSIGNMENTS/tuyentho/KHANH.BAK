@@ -1,0 +1,264 @@
+Program Tuyen_nhan_cong;
+
+Const fi = 'assign.in0210987654321p';
+      fo = 'assign.ou010987654321t';
+      MaxN = 303;  {300}
+      vc = 10000000;
+
+Type arr = array[0..MaxN]of integer;
+
+Var a : array[0..MaxN]of ^arr;
+    loai,nmin,dx,dy,luu,lmin,q : array[0..MaxN]of integer;
+    fx,fy,dmin : array[0..MaxN]of longint;
+    n,m,r,k,dq,cq,bd,kt,sl : integer;
+    f : text;
+
+(*********************************)
+
+Procedure Getmem;
+Var i : integer;
+Begin
+     for i:=0 to MaxN do new(a[i]);
+End;
+(*********************************)
+
+Procedure Enter;
+Var i,j,val : integer;
+Begin
+     assign(f,fi);
+     reset(f);
+
+     readln(f,m,n,r);
+     for i:=0 to MaxN do
+         for j:=0 to MaxN do a[i]^[j]:=-1;
+     for i:=1 to m do read(f,loai[i]);
+     readln(f);
+     while not seekeof(f) do
+           begin
+                readln(f,i,j,val);
+                a[i]^[j]:=val;
+           end;
+
+     close(f);
+End;
+(*********************************)
+
+Function c(i,j : integer) : longint;
+Begin
+     if a[loai[i]]^[j]=-1 then c:=vc
+     else c:=a[loai[i]]^[j];
+End;
+(*********************************)
+
+Procedure Init;
+Var i,j : integer;
+    min : longint;
+Begin
+     for i:=1 to n do
+         begin
+              min:=vc;
+              for j:=1 to r do
+                  if (a[j]^[i]>-1)and(a[j]^[i]<min) then
+                     begin
+                          min:=a[j]^[i];
+                          nmin[i]:=j;
+                     end;
+              if min=vc then a[0]^[i]:=-1
+              else a[0]^[i]:=min;
+         end;
+     k:=m;
+     if n>k then k:=n;
+     for i:=m+1 to k do loai[i]:=m+1;
+End;
+(*********************************)
+
+Procedure Init1;
+Var i,j : integer;
+    cc : longint;
+Begin
+     fillchar(dx,sizeof(dx),0);
+     fillchar(dy,sizeof(dy),0);
+     for i:=1 to k do
+         begin
+              fx[i]:=vc;
+              for j:=1 to k do
+                  begin
+                       cc:=c(i,j);
+                       if cc<fx[i] then fx[i]:=cc;
+                  end;
+
+              fy[j]:=vc;
+              for j:=1 to k do
+                  begin
+                       cc:=c(i,j)-fx[i];
+                       if cc<fy[i] then fy[i]:=cc;
+                  end;
+         end;
+End;
+(*********************************)
+
+Procedure Init2;
+Var i : integer;
+Begin
+     fillchar(luu,sizeof(luu),0);
+     for i:=1 to k do
+         begin
+              dmin[i]:=vc;
+              lmin[i]:=bd;
+         end;
+     dq:=1;
+     cq:=1;
+     q[dq]:=bd;
+End;
+(*********************************)
+
+Procedure Findpath;
+Var i,j : integer;
+    canh : longint;
+Begin
+     kt:=0;
+     while dq<=cq do
+           begin
+                i:=q[dq];
+                inc(dq);
+
+                for j:=1 to k do
+                    if luu[j]=0 then
+                    begin
+                         canh:=c(i,j);
+                         canh:=canh-fx[i]-fy[j];
+                         if canh=0 then
+                            begin
+                                 luu[j]:=i;
+                                 if dy[j]=0 then
+                                    begin
+                                         kt:=j;
+                                         exit;
+                                    end;
+                                 inc(cq);
+                                 q[cq]:=dy[j];
+                            end;
+                         if canh<dmin[j] then
+                            begin
+                                 dmin[j]:=canh;
+                                 lmin[j]:=i;
+                            end;
+                    end;
+           end;
+End;
+(*********************************)
+
+Procedure Tangcapghep;
+Var kk : integer;
+Begin
+     repeat
+           dy[kt]:=luu[kt];
+           kk:=dx[dy[kt]];
+           dx[dy[kt]]:=kt;
+           kt:=kk;
+     until kt=0;
+End;
+(*********************************)
+
+Procedure Suacanh;
+Var i,j : integer;
+    min : longint;
+Begin
+     min:=vc;
+     for i:=1 to k do
+         if (luu[i]=0)and(dmin[i]<min) then min:=dmin[i];
+
+     for j:=1 to k do
+         if (luu[j]<>0)then
+            begin
+                 dec(fy[j],min);
+                 inc(fx[dy[j]],min);
+            end
+         else dec(dmin[j],min);
+     inc(fx[bd],min);
+
+     for j:=1 to k do
+
+         if dmin[j]=0 then
+         if luu[j]=0 then
+            begin
+                 luu[j]:=lmin[j];
+                 if dy[j]=0 then
+                    begin
+                         kt:=j;
+                         exit;
+                    end;
+                 inc(cq);
+                 q[cq]:=dy[j];
+            end;
+End;
+(*********************************)
+
+Procedure Capghep;
+Var i : integer;
+Begin
+     for i:=1 to k do
+         begin
+              bd:=i;
+              Init2;
+
+              repeat
+                    Findpath;
+                    if kt=0 then Suacanh;
+              until kt<>0;
+              Tangcapghep;
+         end;
+End;
+(*********************************)
+
+Procedure Solve;
+Var i : integer;
+Begin
+     Init1;
+     Capghep;
+     sl:=0;
+     for i:=1 to m do
+         if c(i,dx[i])<>vc then
+            begin
+                 inc(sl);
+                 loai[sl]:=loai[i];
+            end;
+     m:=sl;
+     sl:=n-sl;
+     k:=m;
+     if n>k then k:=n;
+     for i:=m+1 to k do loai[i]:=0;
+     Init1;
+     Capghep;
+End;
+(*********************************)
+
+Procedure Result;
+Var i : integer;
+    tong : longint;
+Begin
+     assign(f,fo);
+     rewrite(f);
+
+     tong:=0;
+     for i:=1 to n do tong:=tong + c(dy[i],i);
+     writeln(f,sl,' ',tong);
+     for i:=1 to n do
+         begin
+              if loai[dy[i]]=0 then writeln(f,nmin[i])
+              else writeln(f,loai[dy[i]]);
+         end;
+
+     close(f);
+End;
+(*********************************)
+(*********************************)
+
+BEGIN
+     Getmem;
+     Enter;
+     Init;
+     Solve;
+     Result;
+END.
+

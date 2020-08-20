@@ -1,0 +1,5 @@
+3
+1 1 1
+council1.inp
+council2.inp
+council3.inp

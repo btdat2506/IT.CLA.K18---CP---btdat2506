@@ -1,0 +1,204 @@
+{$a+,b-,d+,e+,f-,g-,i+,l+,n-,o-,p-,q+,r+,s+,t-,v+,x+}
+{$m 16000,0,655360}
+uses   crt;
+
+const  fi   = 'assign.in32987654321p';
+       fo   = 'assign.ou320987654321t';
+       max  = 300;
+       maxc = 15000;
+
+type   arr1 = array[1..2*max] of integer;
+       arr4 = array[1..max] of integer;
+       arr2 = array[1..max] of ^arr4;
+       arr3 = array[1..2*max] of boolean;
+
+var    n,m,r,start,finish,result1  : integer;
+       a, b,fx,fy,tr,list,best,save : arr1;
+       result2 : longint;
+       c       : arr2;
+
+procedure read_in;
+var f           : text;
+    i,j,u,v     : integer;
+begin
+    assign(f,fi);
+    reset(f);
+    readln(f,m,n,r);{m tho, n cong viec, r loai tho}
+    for i:=1 to m do
+                     read(f,list[i]); {loai cua tho i}
+    readln(f);
+    {khoi tri chi phi trong bai toan tim cap ghep loai2 voi tong min}
+    for i:=1 to n do
+    begin
+        new(c[i]);
+        for j:=1 to r do
+        c[i]^[j]:=-maxc;  {khoi tri chi phi cua loai tho j lam cong viec i}
+    end;
+    while not seekeof(f) do
+    begin
+        read(f,v,u,c[u]^[v]);
+        c[u]^[v]:=-c[u]^[v];{ghi nhan chi phi cua loai tho v lam cong viec u}
+    end;
+end;
+
+procedure init;
+var  i,j : integer;
+begin
+    fillchar(a, sizeof(a), 0);
+    fillchar(b, sizeof(b), 0);
+    fillchar(fy,sizeof(fy),0);
+    for i:=1 to n do
+    begin
+        {khoi tri nhan fx[i] = max c[i,list[j]] voi moi j=1..m}
+        fx[i]:=c[i]^[list[1]];
+        for j:=2 to m do
+        if c[i]^[list[j]]>fx[i] then
+                                      fx[i]:=c[i]^[list[j]];
+
+        if result1>0 then
+        begin
+            save[i] := 1;  {tim loai tho j lam tot nhat cong viec i}
+            best[i] := c[i]^[1];
+            for j:=2 to r do
+            if c[i]^[j]>best[i] then
+            begin
+                best[i]:=c[i]^[j];
+                save[i]:=j;
+            end;
+            if best[i]>fx[i] then fx[i]:=best[i];
+        end;
+    end;
+end;
+
+function getc(i,j:integer):integer;
+begin
+    if j<=m then
+       getc := fx[i]+fy[j]-c[i]^[list[j]]
+    else
+       getc:=fx[i]+fy[j]-best[i];
+end;
+
+function daychuyen : integer;
+var q              : arr1;
+    i,j,top,bot    : integer;
+begin
+    fillchar(tr,sizeof(tr),0);
+    q[1]:=start;
+    top:=1;
+    bot:=1;
+    while top<=bot do
+    begin
+        i     := q[top];
+        inc(top);
+        for j:=1 to m+result1 do
+        if (tr[j]=0) and (getc(i,j)=0) then
+        begin
+            tr[j]:=i;
+            if b[j]=0 then
+            begin
+                daychuyen := j;
+                exit;
+            end;
+            inc(bot);
+            q[bot]:=b[j];
+        end;
+    end;
+    daychuyen := 0;
+end;
+
+procedure enlarge; {tang cap ghep}
+var  x,next : integer;
+begin
+    repeat
+        x         := tr[finish];
+        next      := a[x];
+        a[x]      := finish;
+        b[finish] := x;
+        finish    := next;
+    until finish=0;
+end;
+
+procedure suanhan;
+var  i,j,delta  : integer;
+     dx, dy     : arr3;
+begin
+    fillchar(dx,sizeof(dx),false);
+    fillchar(dy,sizeof(dy),false);
+    dx[start]:=true;
+    for i:=1 to m+result1 do
+    if tr[i]<>0 then
+    begin
+        dx[b[i]] := true;
+        dy[i]    := true;
+    end;
+
+    {tim dai luong min de sua nhan}
+    delta := maxint;
+    for i:=1 to n do
+    if dx[i] then
+    for j:=1 to m+result1 do
+    if (not dy[j]) and (getc(i,j)<delta) then delta:=getc(i,j);
+
+    {sua nhan}
+    for i:=1 to n do if dx[i] then dec(fx[i],delta);
+    for i:=1 to m do if dy[i] then inc(fy[i],delta);
+end;
+
+procedure solve;
+var    i,min : integer;
+begin
+    result1:=0;
+    init;
+    min:=n;
+    if min>m then min:=m;
+    for start:=1 to min do
+    begin
+        repeat
+            finish  := daychuyen;
+            if finish=0 then suanhan;
+       until finish<>0;
+       enlarge; {tang cap ghep}
+    end;
+
+    {tim them}
+    for i:=1 to n do
+    if (a[i]=0) or (c[i]^[list[a[i]]] = -maxc) then inc(result1);
+    init;
+
+    for start:=1 to n do
+    begin
+        repeat
+            finish := daychuyen;
+            if finish=0 then suanhan;
+        until finish<>0;
+        enlarge; {tang cap ghep}
+     end;
+  end;
+
+procedure write_out;
+var    f  : text;
+       i  : integer;
+begin
+    assign(f,fo);
+    rewrite(f);
+    result2:=0;
+    for i:=1 to n do
+    if a[i]<=m then
+        dec(result2,c[i]^[list[a[i]]])
+    else
+        dec(result2,best[i]);
+
+    writeln(f,result1,' ',result2); {so tho tuyen them, chi phi phan cong}
+    for i:=1 to n do
+    if a[i]<=m then
+                   writeln(f,list[a[i]])
+    else
+                   writeln(f,save[i]);
+    close(f);
+  end;
+
+BEGIN
+    read_in;
+    solve;
+    write_out;
+END.
