@@ -5,9 +5,10 @@ using namespace std;
 typedef int64_t ll;
 #define For(i, a, b) for(ll i = a; i <= b; i++)
 
+const ll N = 20;
 ll n, m;
-bool visited[200010];
-vector <ll> edge[200010], res;
+bool visited[N];
+vector <ll> edge[N], res;
 
 void dfs(ll u)
 {
@@ -45,8 +46,8 @@ void input()
 int main()
 {
     ios::sync_with_stdio(0); cin.tie(0);
-    /* freopen("test.in", "r", stdin);
-    freopen("test.ok", "w", stdout); */
+    freopen("test.in", "r", stdin);
+    freopen("test.ok", "w", stdout);
     input();
     process();
 }

@@ -5,34 +5,20 @@ using namespace std;
 #define ll int64_t
 #define For(i, a, b) for(ll i = a; i <= b; i++)
 
-ll n;
-pair <ll, ll> pr[100];
-
-voidBFS)
-{
-
-}
-bool cmp (const pair <ll, ll> &L, const pair <ll, ll> &R)
-{
-    if (L.first == R.first)
-        return L.second < R.second;
-    return L.first < R.first;
-}
+ll n, f[110], t[1000];
 
 void process()
 {
-    sort(pr+1, pr+1+n, cmp);
-    For(i, 1, n)
-    cout << pr[i].first << ' ' << pr[i].second << "\n";
+    f[1] = 1;
+    For(i, 2, 100)
+    f[i] = (f[i-1] + f[i-2]) % 100;
+    For(i, 1, 100)
+    cout << f[i] % 100 << " ";
 }
 
 void input()
 {
-    cin >> n;
-    For(i, 1, n)
-    {
-        cin >> pr[i].first >> pr[i].second;
-    }
+    
 }
 
 int main()

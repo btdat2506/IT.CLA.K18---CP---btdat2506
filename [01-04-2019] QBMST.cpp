@@ -11,8 +11,10 @@ typedef pair<ll, ll> ii;
 
 clock_t start = clock();
 
-ll d[12000], freed[12000], ans = 0, n, m;
-vector <ll> cost[16000], edge[16000];
+const ll N = 20;
+
+ll d[N], freed[N], ans = 0, n, m;
+vector <ll> cost[N], edge[N];
 
 struct cmp
 {
@@ -72,8 +74,8 @@ void input()
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	freopen("test.in", "r", stdin);
+	freopen("test.ok", "w", stdout);
 	input();
 	process();
 	//cout << "TIME: " << double(clock()-start) / CLOCKS_PER_SEC << endl;
