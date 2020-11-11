@@ -7,7 +7,7 @@ typedef int64_t ll;
 
 
 ll a, b;
-bool visited[1000];
+map <ll, bool> visited;
 vector <ll> v, res, tmp;
 
 bool Prime(ll n)
@@ -39,7 +39,7 @@ void dfs(ll u)
 
 void process()
 {
-    memset(visited, 0, sizeof(visited));
+    //memset(visited, 0, sizeof(visited));
     set <ll> got;
     got.insert(2);
     For(i, -2, 2)
@@ -69,7 +69,7 @@ void input()
 
 int main()
 {
-    freopen("LUTRIJA.INP", "r", stdin);
+    freopen("test.in", "r", stdin);
     freopen("LUTRIJA.OUT", "w", stdout);
     input();
     process();
