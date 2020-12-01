@@ -1,21 +1,14 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
-#define ll int64_t
+ 
 #define x first
 #define y second
+#define ll int64_t
 #define For(i, a, b) for(ll i = a; i <= b; i++)
-#define Fod(i, a, b) for(ll i = a; i >= b; i--)
-
+ 
 typedef pair<ll, ll> ii;
-
-clock_t start = clock();
-
-bool freed[200], req[1100];
-ll n, m, k, st[1100], ed[1100], d[200], trace[200];
-vector <ll> edge[5000], cost[5000];
-
+ 
 struct cmp
 {
 	bool operator () (const ii &L, const ii &R)
@@ -23,81 +16,70 @@ struct cmp
 		return L.x > R.x;
 	}
 };
-
-void dj(ll start, ll finish, bool query)
+ 
+ll m, n, k, d[110], trace[110];
+vector <ll> edge[11000], cost[11000];
+ 
+void dj(ll start, ll endd, bool query)
 {
-	memset(freed, 0, sizeof(freed));
-	priority_queue <ii, vector<ii>, cmp> pq;
+	For(i, 0, 102)
+		d[i] = INT64_MAX,
+		trace[i] = 0;
+	priority_queue<ii, vector<ii>, cmp> pq;
 	pq.push(ii(0, start));
-	freed[start] = 1; trace[start] = 0;
-	while (pq.size() != 0)
+	d[start] = trace[start] = 0;
+	while (!pq.empty())
 	{
-		ll u = pq.top().y, v = pq.top().x;
+		ll du = pq.top().x, u = pq.top().y;
 		pq.pop();
-		if (d[u] != v) continue;
-		if (u == finish) break;
-		for(ll i = 0; i < edge[u].size(); i++)
-		if (d[i] > d[u] + cost[u][i])
+		if (du != d[u]) continue;
+		if (u == endd) break;
+		for (ll i = 0; i < edge[u].size(); i++)
 		{
-			trace[i] = u;
-			d[i] = d[u] + cost[u][i];
-			pq.push(ii(d[i], i));
+			ll v = edge[u][i];
+			if (d[v] > d[u] + cost[u][i])
+			{
+				d[v] = d[u] + cost[u][i];
+				pq.push(ii(d[v], v));
+				trace[v] = u;
+			}
 		}
 	}
-	if (query)
+	if (!query) cout << d[endd] << endl;
+	else
 	{
-		stack<ll> route;
-		ll track = finish;
-		while (track != 0)
+		stack <ll> st;
+		st.push(endd);
+		while (st.top() != start)
+		st.push(trace[st.top()]);
+		cout << st.size();
+		while (!st.empty())
 		{
-			route.push(track);
-			track = trace[track];
-		}
-		cout << route.size();
-		while (route.size() != 0)
-		{
-			cout << ' ' << route.top();
-			route.pop();
+			cout << ' ' << st.top();
+			st.pop();
 		}
 		cout << endl;
 	}
-	else cout << d[finish] << endl;
 }
-
-void process()
+ 
+int main()
 {
-	For(i, 1, k)
-	dj(st[i], ed[i], req[i]);
-}
-
-void input()
-{
-	For(i, 0, 150)
-	{
-		freed[i] = 1;
-		d[i] = INT64_MAX;
-		trace[i] = 0;
-	}
+	freopen("test.in", "r", stdin);
+	freopen("test.ok", "w", stdout);
 	cin >> n >> m >> k;
 	For(i, 1, m)
 	{
-		ll u = 0, v = 0, c = 0;
+		ll u, v, c;
 		cin >> u >> v >> c;
 		edge[u].push_back(v);
 		edge[v].push_back(u);
 		cost[u].push_back(c);
 		cost[v].push_back(c);
 	}
-
 	For(i, 1, k)
-	cin >> req[i] >> st[i] >> ed[i];
-}
-
-int main()
-{
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
-	input();
-	process();
-	cout << "TIME: " << double(clock()-start) / CLOCKS_PER_SEC << endl;
-}
+	{
+		ll query, u, v;
+		cin >> query >> u >> v;
+		dj(u, v, query);
+	}
+} 
